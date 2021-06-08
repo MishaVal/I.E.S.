@@ -1,8 +1,24 @@
 import 'dart:math';
 
-
-
 String geneticAlgorithm(
+  List<String> inputEquation,
+  int numberPopulations,
+  int maxIterations
+) {
+  List<String> result = List.empty(growable: true);
+  final resultIteration1 = geneticAlgorithmCalc(inputEquation, numberPopulations, maxIterations);
+  final resultIteration2 = geneticAlgorithmCalc(inputEquation, numberPopulations * 2, maxIterations);
+
+  result.addAll([resultIteration1, resultIteration2]);
+  if (int.parse(resultIteration1.split(': ').last) < int.parse(resultIteration2.split(': ').last)) {
+    result.add('Не варто було збільшувати кількість популяцій');
+  } else {
+    result.add('Збільшення кількості популяцій було варте того');
+  }
+  return result.join('\n');
+}
+
+String geneticAlgorithmCalc(
   List<String> inputEquation,
   int numberPopulations,
   int maxIterations
