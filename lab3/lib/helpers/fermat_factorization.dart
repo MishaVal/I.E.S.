@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
-Map<String, dynamic> fermatFactorization(dynamic inputValue) {
+Map<String, dynamic> fermatFactorization(dynamic inputValue, dynamic iterations) {
   Map<String, dynamic> result = Map();
   final stopwatch = Stopwatch()..start();  
   result['iterations'] = 0;
@@ -35,6 +35,8 @@ Map<String, dynamic> fermatFactorization(dynamic inputValue) {
   print(stopwatch.elapsedMilliseconds);
   if (stopwatch.elapsedMilliseconds > 1000) {  
     result['value'] = 'Time is up(1 sec)';
+     } else if (iterations > 100){
+    result['value'] = 'Number of iteration is more than 100';
   } else {
     result['value'] = '${a - b} * ${a + b}';
   }  
